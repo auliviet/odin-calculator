@@ -1,0 +1,95 @@
+/* Fonts & colors
+body,
+button {
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: 32px;
+  background-color: #222;
+}
+
+*/
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: sans-serif;
+  font-weight: lighter;
+  background-color: #000;
+}
+
+#calculator {
+  display: flex;
+  flex-direction: column;
+}
+
+#display {
+  height: 48px;
+  font-size: 32px;
+  line-height: 48px;
+  text-align: right;
+  color: #fff;
+}
+
+#keyboard {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+#operands {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  font-size: 24px;
+  font-weight: 100;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#numbers button {
+  background-color: #3b3b3b;
+  color: #fff;
+}
+
+#operands button {
+  background-color: #ee9843;
+  color: #fff;
+}
+
+#clear {
+  width: 100%;
+  background-color: #a6a6a6;
+  color: #222;
+}
+
+#zero {
+  flex: 2;
+}
