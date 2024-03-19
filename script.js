@@ -34,7 +34,13 @@ function multiply (num1, num2) {
 function divide(dividend, divisor) {
 // Basic division function
 
-    return dividend / divisor;
+    if (divisor != 0) {
+        return dividend / divisor;
+    }
+
+    else {
+        return dividend;
+    }
 }
 
 
