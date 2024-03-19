@@ -67,7 +67,22 @@ function recordNumber(input) {
 function recordOperator(input) {
 // Function to save the operator entered by the user in a variable
 
-    operator = input;
+    if (previousNumber == "") {
+
+        // Move the recorded number into the previousNumber variable so it can be used later to operate
+        previousNumber = currentNumber;
+        currentNumber = "";
+        operator = input;
+    }
+
+    else {
+
+        // Calculate the total of the two stored numbers and move them to the previousNumber variable to free up space to record currentNumber
+        total = operate(operator, +previousNumber, +currentNumber);
+        previousNumber = total;
+        currentNumber = "";
+        operator = input;
+    }
 }
 
 function getInput(event) {
@@ -85,21 +100,9 @@ function getInput(event) {
         recordNumber(input);
     } 
     else if (operations.includes(input)) {
-        if (previousNumber == "") {
 
-            // Move the recorded number into the previousNumber variable so it can be used later to operate
-            previousNumber = currentNumber;
-            currentNumber = "";
-            recordOperator(input);
-        }
-        else {
-
-            // Calculate the total of the two stored numbers and move them to the previousNumber variable to free up space to record currentNumber
-            total = operate(operator, +previousNumber, +currentNumber);
-            previousNumber = total;
-            currentNumber = "";
-            recordOperator(input);
-        }
+        // Record the operator entered by the user in a global variable
+        recordOperator(input);
     }
     else if (equal.includes(input)) {
 
