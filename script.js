@@ -23,6 +23,7 @@ function substract(num1, num2) {
     return num1 - num2;
 }
 
+
 function multiply (num1, num2) {
 // Basic multiplication function
 
@@ -58,11 +59,13 @@ function operate(operator, num1, num2) {
     }
 }
 
+
 function recordNumber(input) {
 // Function to save numbers entered by the user in a variable 
 
     currentNumber = currentNumber + input;
 };
+
 
 function recordOperator(input) {
 // Function to save the operator entered by the user in a variable
@@ -74,7 +77,9 @@ function recordOperator(input) {
         currentNumber = "";
         operator = input;
     }
-
+    else if (currentNumber == "") {
+        operator = input;
+    }
     else {
 
         // Calculate the total of the two stored numbers and move them to the previousNumber variable to free up space to record currentNumber
@@ -84,6 +89,28 @@ function recordOperator(input) {
         operator = input;
     }
 }
+
+
+function recordTotal(input) {
+// Calculate the total of the operation if operators and operands are valid. Else, do nothing.
+
+    if (currentNumber != "" && previousNumber != "" && operator != "") {
+        total = operate(operator, +previousNumber, +currentNumber);
+        previousNumber = total;
+        currentNumber = "";
+    }
+}
+
+
+function clearMemory() {
+// Reset global variables when the user press clear 
+
+    previousNumber = "";
+    currentNumber = "";
+    operator = "";
+    total = ""; 
+}
+
 
 function getInput(event) {
 // Function to record the eventListeners and store them in a correct variable
@@ -106,24 +133,15 @@ function getInput(event) {
     }
     else if (equal.includes(input)) {
 
-        if (currentNumber != "" && previousNumber != "" && operator != "") {
-            total = operate(operator, +previousNumber, +currentNumber);
-            previousNumber = total;
-            currentNumber = "";
-        }
+        // Record the total of the operation
+        recordTotal(input);
     }
     else if (clear.includes(input)) {
-        previousNumber = "";
-        currentNumber = "";
-        operator = "";
-        total = "";
+        clearMemory();
     }
 
     // Debugging
-    console.log(`Current number = ${currentNumber}`);
-    console.log(`Previous number = ${previousNumber}`);
-    console.log(`Operator = ${operator}`);
-    console.log(`total = ${total}`);
+    debug(input);
 
 }
 
@@ -139,3 +157,15 @@ buttons.forEach(button => {
     }); 
 });
 
+//
+// DEBUGGING
+//
+
+function debug(input) {
+    console.log("NEWLINE");
+    console.log(`Input = ${input}`);
+    console.log(`Current number = ${currentNumber}`);
+    console.log(`Previous number = ${previousNumber}`);
+    console.log(`Operator = ${operator}`);
+    console.log(`total = ${total}`);
+}
