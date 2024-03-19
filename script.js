@@ -4,7 +4,7 @@
 let currentNumber = "";
 let previousNumber = "";
 let operator = "";
-let results = "";
+let total = "";
 
 // 
 // Functions
@@ -71,35 +71,57 @@ function recordOperator(input) {
 }
 
 function getInput(event) {
-// Function to record buttons pressed by the user and store them in a correct variable
+// Function to record the eventListeners and store them in a correct variable
 
-let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-let operations = ["+", "-", "*", "/"];
-let input = event.target.value;
+    let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    let operations = ["+", "-", "*", "/"];
+    let equal = ["="];
+    let clear = ["clear"];
+    let input = event.target.value;
 
-if (numbers.includes(input)) {
-    recordNumber(input);
-} 
-else if (operations.includes(input)) {
-    if (previousNumber == "") {
+    if (numbers.includes(input)) {
 
-        // Move the recorded number into the previousNumber variable so it can be used later to operate
-        previousNumber = currentNumber;
-        currentNumber = "";
-        recordOperator(input);
+        // Record all the digits entered by the user to a single number
+        recordNumber(input);
+    } 
+    else if (operations.includes(input)) {
+        if (previousNumber == "") {
+
+            // Move the recorded number into the previousNumber variable so it can be used later to operate
+            previousNumber = currentNumber;
+            currentNumber = "";
+            recordOperator(input);
+        }
+        else {
+
+            // Calculate the total of the two stored numbers and move them to the previousNumber variable to free up space to record currentNumber
+            total = operate(operator, +previousNumber, +currentNumber);
+            previousNumber = total;
+            currentNumber = "";
+            recordOperator(input);
+        }
     }
-    else {
-        let results = operate(operator, +previousNumber, +currentNumber);
-        previousNumber = results;
-        currentNumber = "";
-        recordOperator(input);
-    }
-}
+    else if (equal.includes(input)) {
 
-console.log(`Current number = ${currentNumber}`);
-console.log(`Previous number = ${previousNumber}`);
-console.log(`Operator = ${operator}`);
-console.log(`Results = ${results}`);
+        if (currentNumber != "" && previousNumber != "" && operator != "") {
+            total = operate(operator, +previousNumber, +currentNumber);
+            previousNumber = total;
+            currentNumber = "";
+        }
+    }
+    else if (clear.includes(input)) {
+        previousNumber = "";
+        currentNumber = "";
+        operator = "";
+        total = "";
+    }
+
+    // Debugging
+    console.log(`Current number = ${currentNumber}`);
+    console.log(`Previous number = ${previousNumber}`);
+    console.log(`Operator = ${operator}`);
+    console.log(`total = ${total}`);
+
 }
 
 
