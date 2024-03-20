@@ -118,14 +118,13 @@ function clearMemory() {
 }
 
 
-function getInput(event) {
+function getInput(input) {
 // Function to record the eventListeners and store them in a correct variable
 
     let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let operations = ["+", "-", "*", "/"];
     let equal = ["="];
     let clear = ["clear"];
-    let input = event.target.value;
 
     if (numbers.includes(input)) {
 
@@ -184,9 +183,16 @@ buttons = document.querySelectorAll("button");
 
 buttons.forEach(button => {
     button.addEventListener("click", (event) => {
-        getInput(event);
+        let input = event.target.value;
+        getInput(input);
         displayTotal();
     }); 
+});
+
+document.addEventListener("keypress", (event) => {
+    let input = event.key;
+    getInput(input);
+    displayTotal();
 });
 
 
