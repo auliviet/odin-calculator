@@ -17,11 +17,35 @@ body {
 }
 
 #display {
-  height: 48px;
+  height: 96px;
   font-size: 32px;
   line-height: 48px;
   text-align: right;
   color: #fff;
+}
+
+#top-row {
+  height: 48px;
+  color: #a6a6a6;
+}
+
+#bottom-row {
+  display: flex;
+}
+
+#current-number,
+#operator {
+  height: 48px;
+}
+
+#operator {
+  width: 40px;
+  text-align: center;
+  color: #a6a6a6;
+}
+
+#current-number {
+  flex: 1;
 }
 
 #keyboard {
