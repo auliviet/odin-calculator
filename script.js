@@ -155,7 +155,7 @@ function getInput(event) {
 function displayTotal() {
 // Update the content of the display section in the HTML page
 
-    let contentToDisplay = 0;
+    let contentToDisplay = "0";
 
     if (total != "" && currentNumber == "") {
         contentToDisplay = total;
@@ -164,8 +164,16 @@ function displayTotal() {
         contentToDisplay = currentNumber;
     }
 
+    // Avoid overflow of long numbers;
+    contentToDisplay = contentToDisplay.toString();
+
+    if (contentToDisplay.length > 10) {
+        contentToDisplay = contentToDisplay.slice(0, 10);
+    }
+
     // Update the text content
     document.querySelector("#display").textContent = contentToDisplay;
+    console.log(typeof(contentToDisplay));
 }
 
 
