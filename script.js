@@ -147,8 +147,25 @@ function getInput(event) {
     }
 
     // Debugging
-    debug(input);
+    // debug(input);
 
+}
+
+
+function displayTotal() {
+// Update the content of the display section in the HTML page
+
+    let contentToDisplay = 0;
+
+    if (total != "" && currentNumber == "") {
+        contentToDisplay = total;
+    }
+    else if (currentNumber != "") {
+        contentToDisplay = currentNumber;
+    }
+
+    // Update the text content
+    document.querySelector("#display").textContent = contentToDisplay;
 }
 
 
@@ -160,8 +177,10 @@ buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
     button.addEventListener("click", (event) => {
         getInput(event);
+        displayTotal();
     }); 
 });
+
 
 //
 // DEBUGGING
