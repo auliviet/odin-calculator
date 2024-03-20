@@ -123,7 +123,7 @@ function getInput(input) {
 
     let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let operations = ["+", "-", "*", "/"];
-    let equal = ["="];
+    let equal = ["=", "Enter"];
     let clear = ["clear"];
 
     if (numbers.includes(input)) {
@@ -179,6 +179,8 @@ function displayTotal() {
 // 
 // Event listeners
 // 
+
+// Button inputs
 buttons = document.querySelectorAll("button");
 
 buttons.forEach(button => {
@@ -189,6 +191,8 @@ buttons.forEach(button => {
     }); 
 });
 
+
+// Keyboard inputs
 document.addEventListener("keypress", (event) => {
     let input = event.key;
     getInput(input);
