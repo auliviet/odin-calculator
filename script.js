@@ -96,6 +96,24 @@ function recordOperator(input) {
     }
 }
 
+function recordFloat(input) {
+// Function to add a floating point number
+
+    
+    if (currentNumber == "") {
+
+        // Add a leading 0 if no number has been entered
+        currentNumber = "0.";
+    }
+    else if (currentNumber.includes(".")) {
+
+        // If current number already has a floating point, do nothing
+    }
+    else {
+        currentNumber += ".";
+    }
+}
+
 
 function recordTotal(input) {
 // Calculate the total of the operation if operators and operands are valid. Else, do nothing.
@@ -125,12 +143,19 @@ function getInput(input) {
     let operations = ["+", "-", "*", "/"];
     let equal = ["=", "Enter"];
     let clear = ["clear"];
+    let float = ["."];
 
     if (numbers.includes(input)) {
 
         // Record all the digits entered by the user to a single number
         recordNumber(input);
     } 
+    else if (float.includes(input)) {
+
+        // Add a floating point number
+
+        recordFloat(input);
+    }
     else if (operations.includes(input)) {
 
         // Record the operator entered by the user in a global variable
