@@ -144,10 +144,6 @@ function getInput(input) {
     else if (clear.includes(input)) {
         clearMemory();
     }
-
-    // Debugging
-    // debug(input);
-
 }
 
 
@@ -198,17 +194,3 @@ document.addEventListener("keypress", (event) => {
     getInput(input);
     displayTotal();
 });
-
-
-//
-// DEBUGGING
-//
-
-function debug(input) {
-    console.log("NEWLINE");
-    console.log(`Input = ${input}`);
-    console.log(`Current number = ${currentNumber}`);
-    console.log(`Previous number = ${previousNumber}`);
-    console.log(`Operator = ${operator}`);
-    console.log(`total = ${total}`);
-}
