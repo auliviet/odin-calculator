@@ -121,6 +121,7 @@ function recordTotal(input) {
     if (currentNumber != "" && previousNumber != "" && operator != "") {
         total = operate(operator, +previousNumber, +currentNumber);
         previousNumber = total;
+        operator = "=";
         currentNumber = "";
     }
 }
@@ -172,28 +173,36 @@ function getInput(input) {
 }
 
 
-function displayTotal() {
+function displayResults() {
 // Update the content of the display section in the HTML page
 
-    let contentToDisplay = "0";
+    let currentNumberToDisplay = "";
 
-    if (total != "" && currentNumber == "") {
-        contentToDisplay = total;
+    if (total != "" && currentNumber == "" && operator == "=") {
+        currentNumberToDisplay = total;
     }
     else if (currentNumber != "") {
-        contentToDisplay = currentNumber;
+        currentNumberToDisplay = currentNumber;
     }
 
     // Avoid overflow of long numbers;
-    contentToDisplay = contentToDisplay.toString();
+    currentNumberToDisplay = currentNumberToDisplay.toString();
 
-    if (contentToDisplay.length > 10) {
-        contentToDisplay = contentToDisplay.slice(0, 10);
+    if (currentNumberToDisplay.length > 10) {
+        currentNumberToDisplay = currentNumberToDisplay.slice(0, 10);
     }
 
     // Update the text content
-    document.querySelector("#display").textContent = contentToDisplay;
-    console.log(typeof(contentToDisplay));
+    document.querySelector("#current-number").textContent =
+        currentNumberToDisplay;
+    document.querySelector("#top-row").textContent =
+        previousNumber;
+    document.querySelector("#operator").textContent =
+        operator;
+
+    if (currentNumberToDisplay == total && operator == "=") {
+        document.querySelector("#top-row").textContent = ""; 
+    }
 }
 
 
@@ -208,7 +217,7 @@ buttons.forEach(button => {
     button.addEventListener("click", (event) => {
         let input = event.target.value;
         getInput(input);
-        displayTotal();
+        displayResults();
     }); 
 });
 
@@ -217,5 +226,5 @@ buttons.forEach(button => {
 document.addEventListener("keypress", (event) => {
     let input = event.key;
     getInput(input);
-    displayTotal();
+    displayResults();
 });
