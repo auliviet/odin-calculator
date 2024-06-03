@@ -1,5 +1,5 @@
 # odin-calculator
-Final project for the Odin Project Foundations
+Final project for the Odin Project - Foundations
 
 ## Preview link
 [ To be added ]
