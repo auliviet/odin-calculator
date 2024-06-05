@@ -2,7 +2,7 @@
 Final project for the Odin Project - Foundations
 
 ## Preview link
-[ To be added ]
+https://auliviet.github.io/odin-calculator/
 
 ## Instructions
 - Start by creating functions for the following:
